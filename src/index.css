@@ -1,0 +1,127 @@
+/* 1. The core v4 engine import */
+@import "tailwindcss";
+
+/* 2. Map your custom theme variables to Tailwind classes */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  /* Adding your custom transitions to the theme */
+  --transition-duration-base: 300ms;
+  --transition-duration-fast: 150ms;
+  --transition-duration-slow: 500ms;
+}
+
+/* 3. Define the actual color values */
+@layer base {
+  :root {
+    --background: 220 13% 97%;
+    --foreground: 215 20% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 20% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 20% 15%;
+    --muted: 220 13% 91%;
+    --muted-foreground: 215 16% 47%;
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 210 90% 55%;
+    --primary: 210 90% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 25 5% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 185 70% 45%;
+    --accent-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.5rem;
+
+    /* Legacy compatibility variables */
+    --analogousMoreDarker: hsl(220 20% 20%);
+    --analogousLighter: hsl(220 15% 30%);
+    --analogous1: hsl(185 70% 45%);
+    --analogous2: hsl(215 25% 27%);
+    --darkPurple: hsl(215 25% 27%);
+    --LightGreen: hsl(142 76% 36%);
+    --buttonColor: hsl(210 90% 55%);
+    --buttonColor2: hsl(185 70% 45%);
+    --borderColor: hsl(220 13% 87%);
+    --parentRadius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 19% 60%;
+    --border: 215 28% 25%;
+    --input: 215 28% 25%;
+    --ring: 210 90% 60%;
+    --primary: 210 90% 60%;
+    --secondary: 215 20% 35%;
+    --accent: 185 70% 50%;
+  }
+}
+
+/* 4. Global Base Styles */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+  }
+}
+
+/* 5. Custom Components using Theme Variables */
+@layer components {
+  .card {
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    @apply transition-all duration-200 hover:opacity-90 active:scale-95;
+  }
+}
